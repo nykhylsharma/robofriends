@@ -6,7 +6,7 @@ class Cardlist extends React.Component{
     
     render(){
         return(
-        <div>
+        <div className="tc">
         {
             robots.map((robot,index)=>{
                 return(
