@@ -1,20 +1,26 @@
 import React from "react";
 import Cardlist from "./Cardlist";
 import SearchBox from "./SearchBox";
-import { robots } from './robots';
+//import { robots } from './robots';
 import 'tachyons';
 
 class App extends React.Component{
     constructor(){
         super()
         this.state = {
-            robots: robots,
+            robots: [],
             searchfield: ''
         }
     }
 
     onSearchChange = (event) => {
         this.setState({searchfield: event.target.value})
+    }
+    
+    componentDidMount(){
+        fetch('https://jsonplaceholder.cypress.io/users')
+            .then(response => response.json())
+            .then(users => {this.setState({robots: users})});
     }
 
 
