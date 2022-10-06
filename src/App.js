@@ -24,7 +24,7 @@ class App extends React.Component{
         })
         return(
             <div className="tc center">
-                <h1>Robo Friends</h1>
+                <h1 className="f1">Robo Friends</h1>
                 <SearchBox searchChange={this.onSearchChange} />
                 <Cardlist robots={filteredRobots}/>
             </div>
