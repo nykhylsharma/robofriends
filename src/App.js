@@ -16,7 +16,7 @@ class App extends React.Component{
     onSearchChange = (event) => {
         this.setState({searchfield: event.target.value})
     }
-    
+
     componentDidMount(){
         fetch('https://jsonplaceholder.cypress.io/users')
             .then(response => response.json())
@@ -28,13 +28,16 @@ class App extends React.Component{
         const filteredRobots = this.state.robots.filter( robot =>{
             return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
         })
-        return(
+        if(this.state.robots.length === 0){
+            return("Loading!!!")
+        }
+        else{return(
             <div className="tc center">
                 <h1 className="f1">Robo Friends</h1>
                 <SearchBox searchChange={this.onSearchChange} />
                 <Cardlist robots={filteredRobots}/>
             </div>
-        )
+        )}
     }
 
 }
