@@ -2,6 +2,7 @@ import React from "react";
 import Cardlist from "../components/Cardlist";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
+import ErrorBoundary from "../components/ErrorBoundary";
 import 'tachyons';
 
 class App extends React.Component{
@@ -30,14 +31,16 @@ class App extends React.Component{
             return robot.name.toLowerCase().includes(searchfield.toLowerCase());
         })
         if(!robots.length){
-            return("Loading!!!")
+            return <h1>Loading!!</h1>;
         }
         else{return(
             <div className="tc center">
                 <h1 className="f1">Robo Friends</h1>
                 <SearchBox searchChange={this.onSearchChange} />
                 <Scroll>
-                    <Cardlist robots={filteredRobots}/>
+                    <ErrorBoundary>
+                        <Cardlist robots={filteredRobots}/>
+                    </ErrorBoundary>
                 </Scroll>
                 
             </div>
